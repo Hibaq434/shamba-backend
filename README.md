@@ -37,7 +37,7 @@ uvicorn main:app --reload --port 8000
 
 ### POST /api/auth/login
 Content-Type: `application/x-www-form-urlencoded` (standard OAuth2 form,
-not JSON) — Vanessa's login form should POST `username` (= the email) and
+not JSON)  You should use  `username` (= the email) and
 `password` as form fields.
 ```
 // response
