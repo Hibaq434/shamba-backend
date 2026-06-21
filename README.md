@@ -8,8 +8,10 @@ assessment endpoint, and historical data for the Trends page.
 ```bash
 cd shamba-backend
 python3 -m venv venv
-source venv/bin/activate    # Linux/Mac  
-venv\Scripts\activate  # Windows:
+  # Linux/Mac  
+source venv/bin/activate  
+# Windows
+venv\Scripts\activate  
 pip install -r requirements.txt
 
 cp .env.example .env              # then fill in SECRET_KEY and GEMINI_API_KEY
@@ -37,7 +39,7 @@ uvicorn main:app --reload --port 8000
 
 ### POST /api/auth/login
 Content-Type: `application/x-www-form-urlencoded` (standard OAuth2 form,
-not JSON)  You should use  `username` (= the email) and
+not JSON)  Use `username` (= the email) and
 `password` as form fields.
 ```
 // response
@@ -90,23 +92,23 @@ first — this is what feeds Vanessa's TrendsPage.
 
 ```bash
 # Sign up
-curl -X POST localhost:8000/api/auth/signup \
+curl -X POST http://localhost:8000/api/auth/signup \
   -H "Content-Type: application/json" \
   -d '{"name":"Jane","email":"jane@example.com","password":"secret123"}'
 
 # Save the access_token from the response, then:
 TOKEN="paste-token-here"
 
-curl -X POST localhost:8000/api/assess-farm \
+curl -X POST http://localhost:8000/api/assess-farm \
   -H "Authorization: Bearer $TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"crop_type":"maize","farm_size_acres":2.5,"irrigation_level":"medium","soil_moisture":"moderate","water_usage_litres":5000}'
 
-curl localhost:8000/api/farm-history -H "Authorization: Bearer $TOKEN"
+curl http://localhost:8000/api/farm-history \ 
+-H "Authorization: Bearer $TOKEN"
 ```
 
 ## Deployment
 
 Currently runs locally.
 
-Deployment to Render will be configured later.
