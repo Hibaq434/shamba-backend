@@ -8,7 +8,8 @@ assessment endpoint, and historical data for the Trends page.
 ```bash
 cd shamba-backend
 python3 -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
+source venv/bin/activate    # Linux/Mac  
+venv\Scripts\activate  # Windows:
 pip install -r requirements.txt
 
 cp .env.example .env              # then fill in SECRET_KEY and GEMINI_API_KEY
@@ -20,25 +21,8 @@ Run it:
 uvicorn main:app --reload --port 8000
 ```
 
-Interactive docs (test everything here without writing frontend code first):
-`http://localhost:8000/docs`
 
-The database is SQLite (`shamba.db`), created automatically on first run —
-no separate DB setup needed for the hackathon.
 
-## Dropping in Virginia's model
-
-Put `farm_health_model.pkl` directly in this folder (same level as
-`main.py`) and restart the server. `ai_logic.py` picks it up automatically.
-Until then, a simple rule-based stub answers `/assess-farm` so the rest of
-the team isn't blocked.
-
-**Before Virginia trains the final model**, make sure she uses the same
-crop/irrigation/moisture → integer mapping defined at the top of
-`ai_logic.py`. The original training script's `LabelEncoder` approach
-doesn't save its mapping, so without agreeing on fixed codes the model's
-predictions will be silently wrong (no error, just bad answers) once it's
-hooked up to this backend.
 
 ## API Reference
 
@@ -121,15 +105,8 @@ curl -X POST localhost:8000/api/assess-farm \
 curl localhost:8000/api/farm-history -H "Authorization: Bearer $TOKEN"
 ```
 
-## Notes for the team
+## Deployment
 
-- **Nicole / Vanessa:** login is form-encoded, not JSON (that's a FastAPI/
-  OAuth2 convention) — everything else is plain JSON. Store the token
-  (e.g. in React state or a context, not localStorage if you want it to
-  survive only the session) and attach it as a Bearer header on every
-  request after login.
-- **Gemini calls fail gracefully** — if `GEMINI_API_KEY` isn't set or the
-  network/API hiccups during the demo, `/assess-farm` still returns a
-  sensible fallback recommendation instead of erroring out.
-- CORS is wide open (`allow_origins=["*"]`) for fast iteration. Fine for a
-  hackathon demo; not something to ship as-is beyond that.
+Currently runs locally.
+
+Deployment to Render will be configured later.
