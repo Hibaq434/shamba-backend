@@ -6,5 +6,8 @@ passlib==1.7.4
 bcrypt==3.2.2
 pydantic[email]
 python-multipart
-google-generativeai
 python-dotenv
+numpy
+scikit-learn
+groq
+google-genai

@@ -1,0 +1,50 @@
+{
+  "features": [
+    "N",
+    "P",
+    "K",
+    "temperature",
+    "humidity",
+    "ph",
+    "rainfall",
+    "crop_encoded",
+    "irrigation_encoded",
+    "soil_moisture_encoded"
+  ],
+  "feature_count": 10,
+  "output_labels": {
+    "0": "healthy",
+    "1": "moderate",
+    "2": "dry"
+  },
+  "mappings": {
+    "CROP_TYPE_MAP": {
+      "maize": 0,
+      "beans": 1,
+      "wheat": 2,
+      "rice": 3,
+      "sorghum": 4,
+      "cassava": 5,
+      "potato": 6,
+      "tomato": 7,
+      "coffee": 8,
+      "tea": 9
+    },
+    "IRRIGATION_MAP": {
+      "low": 0,
+      "medium": 1,
+      "high": 2
+    },
+    "SOIL_MOISTURE_MAP": {
+      "dry": 0,
+      "moderate": 1,
+      "wet": 2
+    },
+    "HEALTH_STATUS_MAP": {
+      "healthy": 0,
+      "moderate": 1,
+      "dry": 2
+    }
+  },
+  "accuracy": "99.8%"
+}
